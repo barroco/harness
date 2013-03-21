@@ -2,6 +2,10 @@ require 'statsd-instrument'
 
 module Harness
   class StatsdAdapter
+
+    ALLOWED_NAMESPACE_CHARS = /[^a-z0-9]/.freeze
+    ALLOWED_NAME_CHARS = /[^a-z0-9\-]/.freeze
+
     class Config
       delegate :host, :port, :default_sample_rate, :mode, :logger, :to => :backend
       delegate :host=, :port=, :default_sample_rate=, :mode=, :logger=, :to => :backend
