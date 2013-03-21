@@ -39,8 +39,8 @@ module Harness
     end
 
     def sanitize(name)
-      key = Harness.config.namespace ? "#{Harness.config.namespace}.#{name}" : name
-      key.gsub(%r{[^a-z0-9]}, '.')
+      key = name.gsub(ALLOWED_NAME_CHARS, '.')
+      Harness.config.namespace ? "#{Harness.config.namespace.gsub(ALLOWED_NAMESPACE_CHARS, '.')}.#{key}" : key
     end
 
     def backend
